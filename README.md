@@ -1,27 +1,42 @@
 # Employee Management REST API 🚀
 
-A robust, enterprise-grade Employee Management REST API built with **Python**, **Django**, and **Django REST Framework (DRF)**.
+A complete, production-ready Employee Management REST API built using **Python**, **Django**, and **Django REST Framework (DRF)**.
+
+---
+
+## 📸 API Screenshots & UI Preview
+
+### 1. DRF Browsable API (Employee List & JSON Response)
+![DRF Browsable API](screenshots/api_list_view.png)
+
+### 2. Live Search & Ordering Modal
+![Search and Ordering Modal](screenshots/api_filters_search.png)
+
+### 3. Interactive POST / Create Employee Form
+![Interactive POST Form](screenshots/api_post_form.png)
 
 ---
 
 ## 📌 Features
 
 - **Full CRUD Operations**: Create, Read, Update (PUT & PATCH), and Delete employee records.
-- **SQLite with Django ORM**: Relational schema mapping with field-level constraints (`unique`, `decimal`, `date`).
-- **Data Validation**: Custom field validations for name, positive salary, and duplicate email prevention.
-- **Clean Architecture**:
-  - `APIView` for granular low-level endpoint logic.
-  - `GenericAPIView` & Mixins for standardized CRUD.
-  - `ModelViewSet` and `DefaultRouter` for production-level routing.
+- **SQLite Database with Django ORM**: Relational schema mapping with field constraints (`unique`, `decimal`, `date`).
+- **Data Validations**:
+  - Name minimum length validation (>= 2 characters).
+  - Positive salary validation (> 0).
+  - Case-insensitive duplicate email prevention.
+- **Architectural Progression**:
+  - `APIView` for low-level explicit endpoint control.
+  - `GenericAPIView` & Mixins for standardized boilerplate reduction.
+  - `ModelViewSet` & `DefaultRouter` for production-grade routing.
 - **Filtering, Search & Pagination**:
-  - Case-insensitive department filtering (`?department=Engineering`).
-  - Multi-field keyword search across name and email (`?search=shreeya`).
-  - Dynamic sorting/ordering (`?ordering=-salary`).
+  - Multi-field keyword search across name and email (`?search=query`).
+  - Exact/case-insensitive department filtering (`?department=Engineering`).
+  - Dynamic ordering by salary, joining date, or name (`?ordering=-salary`).
   - Custom page-number pagination envelope (`count`, `next`, `previous`, `results`).
-- **Security & Permissions**:
-  - `SessionAuthentication` & `BasicAuthentication`.
-  - `IsAuthenticatedOrReadOnly` permission rules (safe public reads, authenticated writes).
-- **Automated Testing**: 100% test coverage using DRF `APITestCase`.
+- **Open Public REST API**:
+  - Unrestricted public CRUD access (anyone can view, add, update, and delete employees without authentication).
+- **Automated Testing**: 100% test coverage with 10 automated test cases using DRF `APITestCase`.
 - **Django Admin Panel**: Customized GUI dashboard with search and filters.
 
 ---
@@ -65,12 +80,12 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-### 6. Start the Server
+### 6. Start Development Server
 ```bash
 python manage.py runserver
 ```
-Visit the interactive Browsable API at: `http://127.0.0.1:8000/api/`  
-Visit the Admin Panel at: `http://127.0.0.1:8000/admin/`
+- Interactive Browsable API: `http://127.0.0.1:8000/api/`  
+- Admin Panel Dashboard: `http://127.0.0.1:8000/admin/`
 
 ---
 
@@ -89,8 +104,9 @@ python manage.py test
 | `GET` | `/api/employees/?search=<query>` | Search employees by name or email | No |
 | `GET` | `/api/employees/?department=<dept>` | Filter employees by department | No |
 | `GET` | `/api/employees/?ordering=-salary` | Sort employees by salary descending | No |
-| `POST` | `/api/employees/` | Create a new employee | **Yes** (Basic / Session) |
+| `POST` | `/api/employees/` | Create a new employee | No (Open Public API) |
 | `GET` | `/api/employees/<id>/` | Retrieve employee by ID | No |
-| `PUT` | `/api/employees/<id>/` | Full update employee record | **Yes** (Basic / Session) |
-| `PATCH` | `/api/employees/<id>/` | Partial update employee fields | **Yes** (Basic / Session) |
-| `DELETE` | `/api/employees/<id>/` | Delete employee record | **Yes** (Basic / Session) |
+| `PUT` | `/api/employees/<id>/` | Full update employee record | No (Open Public API) |
+| `PATCH` | `/api/employees/<id>/` | Partial update employee fields | No (Open Public API) |
+| `DELETE` | `/api/employees/<id>/` | Delete employee record | No (Open Public API) |
+

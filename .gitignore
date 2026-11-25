@@ -1,10 +1,10 @@
-# Virtual Environment (Never push packages or python binaries)
+# Virtual Environment (Never push binaries or libraries)
 env/
 venv/
 .venv/
 ENV/
 
-# Python compiled bytecode
+# Python compiled bytecode & cache
 __pycache__/
 *.py[cod]
 *$py.class
@@ -30,3 +30,4 @@ local_settings.py
 # OS generated files
 .DS_Store
 Thumbs.db
+

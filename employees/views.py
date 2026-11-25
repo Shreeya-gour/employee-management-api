@@ -92,7 +92,7 @@ class EmployeeViewSet(viewsets.ModelViewSet):
     queryset = Employee.objects.all().order_by('-id')
     serializer_class = EmployeeSerializer
     pagination_class = EmployeePagination
-    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    permission_classes = [permissions.AllowAny]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'email']
     ordering_fields = ['salary', 'joining_date', 'name']
